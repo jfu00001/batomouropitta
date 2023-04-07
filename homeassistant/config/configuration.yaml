@@ -1,0 +1,6 @@
+#panel_iframe:
+  portainer:
+    title: "Portainer"
+    url: "http://172.0.0.1:9000/#/containers"
+    icon: mdi:docker
+    require_admin: true
