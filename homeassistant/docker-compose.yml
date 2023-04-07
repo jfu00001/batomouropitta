@@ -1,4 +1,7 @@
-homeassistant:
+version: '3'
+
+services:
+  homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
