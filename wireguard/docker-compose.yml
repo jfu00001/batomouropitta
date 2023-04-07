@@ -13,7 +13,7 @@ services:
       - SERVERURL=auto
       - SERVERPORT=51820 #optional
       - PEERS=peeruser1 #optional
-      - PEERDNS=auto #optional
+      - PEERDNS=1.1.1.2,1.0.0.2 #optional
       - ALLOWEDIPS=0.0.0.0/0 #optional
     volumes:
       - /opt/wireguard/config:/config
