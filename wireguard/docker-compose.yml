@@ -11,7 +11,8 @@ services:
       - PGID=1000
       - TZ=Asia/Nicosia
       - PEERS=peeruser1
-      - PEERDNS=10.13.13.1
+      - PEERDNS=auto
+      - ALLOWEDIPS=0.0.0.0/0
     volumes:
       - /opt/wireguard/config:/config
       - /lib/modules:/lib/modules #optional
