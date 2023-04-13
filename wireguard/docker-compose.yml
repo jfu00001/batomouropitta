@@ -21,8 +21,8 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
-    networks:                                
-      default:                               
-        driver: bridge                       
-        driver_opts:                         
-          com.docker.network.driver.mtu: 1400
+  networks:                                
+    default:                               
+      driver: bridge                       
+      driver_opts:                         
+        com.docker.network.driver.mtu: 1400
