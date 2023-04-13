@@ -15,14 +15,9 @@ services:
       - ALLOWEDIPS=0.0.0.0/0
     volumes:
       - /opt/wireguard/config:/config
-      - /lib/modules:/lib/modules #optional
+      - ./resolv.conf:/etc/resolv.conf
     ports:
       - 51820:51820/udp
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
-networks:                                
-  default:                               
-    driver: bridge                       
-    driver_opts:                         
-      com.docker.network.driver.mtu: 1400
