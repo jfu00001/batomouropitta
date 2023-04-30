@@ -38,7 +38,7 @@ services:
     restart: "unless-stopped"
 
   sonarr:
-    image: linuxserver/sonarr:arm64
+    image: linuxserver/sonarr:arm64v8-4.0.0-develop
     container_name: sonarr
     networks:
       - mediastack
@@ -55,7 +55,7 @@ services:
 
   jackett:
     container_name: jackett
-    image: linuxserver/jackett
+    image: linuxserver/jackett:0.20.3670
     networks:
       - mediastack
     environment:
@@ -70,7 +70,7 @@ services:
     restart: unless-stopped
 
   jellyfin:
-    image: linuxserver/jellyfin
+    image: linuxserver/jellyfin:10.8.9
     container_name: jellyfin
     networks:
       - mediastack
