@@ -1,5 +1,4 @@
 version: "3.3"
-name: media-stack
 services:
   transmission:
     container_name: transmission
