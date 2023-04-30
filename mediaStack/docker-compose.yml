@@ -1,0 +1,107 @@
+version: "3.9"
+name: media-stack
+services:
+  transmission:
+    container_name: transmission
+    image: linuxserver/transmission:4.0.2
+    networks:
+      - mediastack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Nicosia
+      - USER=admin
+      - PASS=nimdatx
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    volumes:
+      - tx-config:/config
+      - torrent-downloads:/downloads
+      - tx-watch:/watch
+    restart: "unless-stopped"
+
+  radarr:
+    container_name: radarr
+    image: linuxserver/radarr:4.3.2
+    networks:
+      - mediastack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Nicosia
+    ports:
+      - 7878:7878
+    volumes:
+      - radarr-config:/config
+      - torrent-downloads:/downloads
+    restart: "unless-stopped"
+
+  sonarr:
+    image: linuxserver/sonarr:4.0.0-develop
+    container_name: sonarr
+    networks:
+      - mediastack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Nicosia
+    volumes:
+      - sonarr-config:/config
+      - torrent-downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  jackett:
+    container_name: jackett
+    image: linuxserver/jackett:0.20.3670
+    networks:
+      - mediastack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Nicosia
+    volumes:
+      - jackett-config:/config
+      - jackett-blackhole:/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+
+  jellyfin:
+    image: linuxserver/jellyfin:10.8.9
+    container_name: jellyfin
+    networks:
+      - mediastack
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Nicosia
+    volumes:
+      - jellyfin-config:/config
+      - torrent-downloads:/data
+  # devices:
+   #  - /dev/videoN:/dev/videoN # Mount GPU device 
+    ports:
+      - 8096:8096
+      - 7359:7359/udp
+      - 8920:8920
+    restart: unless-stopped
+
+volumes:
+  torrent-downloads:
+  radarr-config:
+  sonarr-config:
+  jackett-config:
+  jackett-blackhole:
+  prowlarr-config:
+  jellyfin-config:
+  qbittorrent-config:
+  tx-config:
+  tx-watch:
+
+networks:
+  mediastack:
+    external: true
