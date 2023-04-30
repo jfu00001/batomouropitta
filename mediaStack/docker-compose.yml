@@ -2,7 +2,7 @@ version: "3.3"
 services:
   transmission:
     container_name: transmission
-    image: linuxserver/transmission
+    image: lscr.io/linuxserver/transmission
     networks:
       - mediastack
     environment:
@@ -23,7 +23,7 @@ services:
 
   radarr:
     container_name: radarr
-    image: linuxserver/radarr
+    image: lscr.io/linuxserver/radarr
     networks:
       - mediastack
     environment:
@@ -38,7 +38,7 @@ services:
     restart: "unless-stopped"
 
   sonarr:
-    image: linuxserver/sonarr
+    image: lscr.io/linuxserver/sonarr
     container_name: sonarr
     networks:
       - mediastack
@@ -55,7 +55,7 @@ services:
 
   jackett:
     container_name: jackett
-    image: linuxserver/jackett
+    image: lscr.io/linuxserver/jackett
     networks:
       - mediastack
     environment:
@@ -70,7 +70,7 @@ services:
     restart: unless-stopped
 
   jellyfin:
-    image: linuxserver/jellyfin
+    image: lscr.io/linuxserver/jellyfin
     container_name: jellyfin
     networks:
       - mediastack

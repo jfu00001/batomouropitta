@@ -2,7 +2,7 @@
 
 ```
 docker network create mynetwork
----
+```
 
 # Install Jellyfin, Radarr, Sonarr, Jackett and Transmission stack
 docker-compose up -d
