@@ -38,7 +38,7 @@ services:
     restart: "unless-stopped"
 
   sonarr:
-    image: linuxserver/sonarr:version-3.0.10.1567
+    image: linuxserver/sonarr:amd64-develop-4.0.0.470-ls461
     container_name: sonarr
     networks:
       - mediastack
