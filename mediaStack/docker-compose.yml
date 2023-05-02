@@ -38,7 +38,7 @@ services:
     restart: "unless-stopped"
 
   sonarr:
-    image: lscr.io/linuxserver/sonarr:3.0.10.1567-ls189
+    image: lscr.io/linuxserver/sonarr:3.0.8
     container_name: sonarr
     networks:
       - mynetwork
