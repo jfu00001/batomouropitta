@@ -1,22 +1,13 @@
-# Install media stack
+# Install radarr. sonarr, transmission, jackett and jellyfin
+
+- Change transmission password in docker-compose.yml file
+- Run below commands
 
 ```
-docker network create mynetwork
-```
-
-# Install Jellyfin, Radarr, Sonarr, Jackett and Transmission stack
+bash pre-deploy.sh
 docker-compose up -d
-
-
-# Configure Transmission
-
-- From backend, Run below commands
-
-```
-docker exec -it transmission bash # Get inside transmission container
-
-mkdir /downloads/movies /downloads/tvshows
-chown 1000:1000 /downloads/movies /downloads/tvshows
+docker-compose -f docker-compose-nginx.yml up -d # OPTIONAL
+bash post-deploy.sh
 ```
 
 # Add indexer to Jackett
@@ -26,13 +17,13 @@ chown 1000:1000 /downloads/movies /downloads/tvshows
 - Search for torrent indexer (e.g. the pirates bay, YTS)
 - Add selected
 
-# Configure Radarr
+# Configure Radarr/Sobarr
 
 - Open Radarr at http://localhost:7878
 - Settings --> Media Management --> Check mark "Movies deleted from disk are automatically unmonitored in Radarr" under File management section --> Save
 - Settings --> Indexers --> Add --> Add Rarbg indexer --> Add minimum seeder (4) --> Test --> Save
 - Settings --> Indexers --> Add --> Torznab --> Follow steps from Jackett to add indexer
-- Settings --> Download clients --> Transmission --> Add Host (transmission / qbittorrent) and port (9091 / 5080) --> Username and password if added --> Test --> Save **Note: If VPN is enabled, then transmission / qbittorrent is reachable on vpn's service name**
+- Settings --> Download clients --> Transmission --> Add Host (transmission) and port (9091) --> Username and password if added --> Test --> Save
 - Settings --> General --> Enable advance setting --> Select AUthentication and add username and password
 
 # Add a movie
