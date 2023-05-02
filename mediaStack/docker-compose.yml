@@ -2,7 +2,7 @@ version: '2'
 services:
   transmission:
     container_name: transmission
-    image: lscr.io/linuxserver/transmission:3.00-r5-ls127
+    image: lscr.io/linuxserver/transmission:latest
     networks:
       - mynetwork
     environment:
@@ -23,7 +23,7 @@ services:
 
   radarr:
     container_name: radarr
-    image: lscr.io/linuxserver/radarr:4.1.0.6175-ls146
+    image: lscr.io/linuxserver/radarr:latest
     networks:
       - mynetwork
     environment:
@@ -38,7 +38,7 @@ services:
     restart: "unless-stopped"
 
   sonarr:
-    image: lscr.io/linuxserver/sonarr:3.0.8.1507-ls150
+    image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
     networks:
       - mynetwork
@@ -55,7 +55,7 @@ services:
 
   jackett:
     container_name: jackett
-    image: lscr.io/linuxserver/jackett:v0.20.1426-ls74
+    image: lscr.io/linuxserver/jackett:latest
     networks:
       - mynetwork
     environment:
@@ -70,7 +70,7 @@ services:
     restart: unless-stopped
 
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:10.8.1-1-ls171
+    image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
     networks:
       - mynetwork
