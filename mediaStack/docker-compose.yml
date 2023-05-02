@@ -1,14 +1,15 @@
-version: "3.3"
+version: '2'
+name: media-stack
 services:
   transmission:
     container_name: transmission
-    image: linuxserver/transmission
+    image: lscr.io/linuxserver/transmission:3.00-r5-ls127
     networks:
-      - mediastack
+      - mynetwork
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Nicosia
+      - TZ=UTC
       - USER=admin
       - PASS=nimdatx
     ports:
@@ -17,51 +18,51 @@ services:
       - 51413:51413/udp
     volumes:
       - tx-config:/config
-      - torrent-downloads:/downloads
+      - tx-downloads:/downloads
       - tx-watch:/watch
     restart: "unless-stopped"
 
   radarr:
     container_name: radarr
-    image: linuxserver/radarr
+    image: lscr.io/linuxserver/radarr:4.1.0.6175-ls146
     networks:
-      - mediastack
+      - mynetwork
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Nicosia
+      - TZ=UTC
     ports:
       - 7878:7878
     volumes:
       - radarr-config:/config
-      - torrent-downloads:/downloads
+      - tx-downloads:/downloads
     restart: "unless-stopped"
 
   sonarr:
-    image: linuxserver/sonarr:arm32v6-latest
+    image: lscr.io/linuxserver/sonarr:3.0.8.1507-ls150
     container_name: sonarr
     networks:
-      - mediastack
+      - mynetwork
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Nicosia
+      - TZ=UTC
     volumes:
       - sonarr-config:/config
-      - torrent-downloads:/downloads
+      - tx-downloads:/downloads #optional
     ports:
       - 8989:8989
     restart: unless-stopped
 
   jackett:
     container_name: jackett
-    image: linuxserver/jackett
+    image: lscr.io/linuxserver/jackett:v0.20.1426-ls74
     networks:
-      - mediastack
+      - mynetwork
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Nicosia
+      - TZ=UTC
     volumes:
       - jackett-config:/config
       - jackett-blackhole:/downloads
@@ -70,37 +71,35 @@ services:
     restart: unless-stopped
 
   jellyfin:
-    image: linuxserver/jellyfin
+    image: lscr.io/linuxserver/jellyfin:10.8.1-1-ls171
     container_name: jellyfin
     networks:
-      - mediastack
+      - mynetwork
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Nicosia
+      - TZ=UTC
     volumes:
       - jellyfin-config:/config
-      - torrent-downloads:/data
+      - tx-downloads:/data
   # devices:
    #  - /dev/videoN:/dev/videoN # Mount GPU device 
     ports:
       - 8096:8096
-      - 7359:7359/udp
+      - 7359:7359/udp #optional
       - 8920:8920
     restart: unless-stopped
 
 volumes:
-  torrent-downloads:
+  tx-config:
+  tx-downloads:
+  tx-watch:
   radarr-config:
   sonarr-config:
   jackett-config:
   jackett-blackhole:
-  prowlarr-config:
   jellyfin-config:
-  qbittorrent-config:
-  tx-config:
-  tx-watch:
 
 networks:
-  mediastack:
+  mynetwork:
     external: true
