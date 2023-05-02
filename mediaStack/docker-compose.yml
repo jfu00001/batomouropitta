@@ -11,7 +11,7 @@ services:
       - PGID=1000
       - TZ=UTC
       - USER=admin
-      - PASS=nimdatx
+      - PASS=adminadmin
     ports:
       - 9091:9091
       - 51413:51413
