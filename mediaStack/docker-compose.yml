@@ -92,6 +92,11 @@ services:
 volumes:
   tx-config:
   tx-downloads:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: #mount path
   tx-watch:
   radarr-config:
   sonarr-config:
