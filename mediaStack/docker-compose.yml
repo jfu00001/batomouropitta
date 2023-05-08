@@ -8,7 +8,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=UTC
+      - TZ=Asia/Nicosia
       - USER=admin
       - PASS=adminadmin
     ports:
@@ -29,7 +29,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=UTC
+      - TZ=Asia/Nicosia
     ports:
       - 7878:7878
     volumes:
@@ -45,12 +45,28 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=UTC
+      - TZ=Asia/Nicosia
     volumes:
       - sonarr-config:/config
-      - tx-downloads:/downloads #optional
+      - tx-downloads:/downloads
     ports:
       - 8989:8989
+    restart: unless-stopped
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    networks:
+      - mynetwork
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Nicosia
+    volumes:
+      - bazarr-config:/config
+      - tx-downloads:/downloads
+    ports:
+      - 6767:6767
     restart: unless-stopped
 
   jackett:
@@ -61,7 +77,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=UTC
+      - TZ=Asia/Nicosia
     volumes:
       - jackett-config:/config
       - jackett-blackhole:/downloads
@@ -77,7 +93,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=UTC
+      - TZ=Asia/Nicosia
     volumes:
       - jellyfin-config:/config
       - tx-downloads:/data
@@ -100,6 +116,7 @@ volumes:
   tx-watch:
   radarr-config:
   sonarr-config:
+  bazarr-config:
   jackett-config:
   jackett-blackhole:
   jellyfin-config:
