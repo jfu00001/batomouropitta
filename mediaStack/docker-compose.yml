@@ -112,7 +112,7 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: #mount path
+      device: /media/jfu/NESO HDD/raspberry #mount path
   tx-watch:
   radarr-config:
   sonarr-config:
