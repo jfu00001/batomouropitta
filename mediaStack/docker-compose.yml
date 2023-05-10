@@ -88,6 +88,7 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin
+    network_mode: 'host'
     networks:
       - mynetwork
     environment:
