@@ -105,18 +105,18 @@ services:
       - 8920:8920
     restart: unless-stopped
 
-  sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:latest
-    container_name: sabnzbd
+  nzbget:
+    image: lscr.io/linuxserver/nzbget:latest
+    container_name: nzbget
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Nicosia
     volumes:
-      - sabnzbd-config:/config
+      - nzbget-config:/config
       - tx-downloads:/downloads
     ports:
-      - 8090:8080
+      - 6789:6789
     restart: unless-stopped
 
 volumes:
@@ -134,7 +134,7 @@ volumes:
   jackett-config:
   jackett-blackhole:
   jellyfin-config:
-  sabnzbd-config:
+  nzbget-config:
 
 networks:
   mynetwork:
