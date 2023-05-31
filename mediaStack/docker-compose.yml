@@ -114,6 +114,7 @@ services:
       - TZ=Asia/Nicosia
     volumes:
       - sabnzbd-config:/config
+      - tx-downloads:/downloads
     ports:
       - 8090:8080
     restart: unless-stopped
