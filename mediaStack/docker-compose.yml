@@ -112,6 +112,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Nicosia
+      - NZBGET_USER=admin
+      - NZBGET_PASS=admin
     volumes:
       - nzbget-config:/config
       - tx-downloads:/downloads
