@@ -105,6 +105,19 @@ services:
       - 8920:8920
     restart: unless-stopped
 
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - sabnzbd-config:/config
+    ports:
+      - 8090:8080
+    restart: unless-stopped
+
 volumes:
   tx-config:
   tx-downloads:
@@ -120,6 +133,7 @@ volumes:
   jackett-config:
   jackett-blackhole:
   jellyfin-config:
+  sabnzbd-config:
 
 networks:
   mynetwork:
