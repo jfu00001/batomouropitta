@@ -86,7 +86,7 @@ services:
     restart: unless-stopped
 
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:10.7.1
+    image: lscr.io/linuxserver/jellyfin:10.7.7
     container_name: jellyfin
     networks:
       - mynetwork
